@@ -6,7 +6,7 @@ let scene;
 let playerName = false;
 
 let stats = {
-  lives: 1,
+  lives: 3,
   score: 0,
   shield: 100
 }
