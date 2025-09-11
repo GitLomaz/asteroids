@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Game</title>
+    <style media='screen' type='text/css'>
+      @font-face {
+        font-family: font1;
+        src: url('font.ttf');
+        font-weight:400;
+        font-weight:normal;
+      }
+    </style>
+    <script type="text/javascript" src="./js/data/animals.js"></script>
+    <script type="text/javascript" src="./js/data/levels.js"></script>
+    <script type="text/javascript" src="./js/libs/fontfaceobserver.js"></script>
+    <script type="text/javascript" src="./js/libs/phaser3.js"></script>
+    <script type="text/javascript" src="./js/libs/random.js"></script>
+    <script type="text/javascript" src="./js/classes/entity.js"></script>
+    <script type="text/javascript" src="./js/classes/poweruphealth.js"></script>
+    <script type="text/javascript" src="./js/classes/powerupweapon.js"></script>
+    <script type="text/javascript" src="./js/classes/powerupscore.js"></script>
+    <script type="text/javascript" src="./js/classes/powerupnova.js"></script>
+    <script type="text/javascript" src="./js/classes/enemy.js"></script>
+    <script type="text/javascript" src="./js/classes/mine.js"></script>
+    <script type="text/javascript" src="./js/classes/snake.js"></script>
+    <script type="text/javascript" src="./js/classes/ufo.js"></script>
+    <script type="text/javascript" src="./js/classes/monster.js"></script>
+    <script type="text/javascript" src="./js/classes/asteroid.js"></script>
+    <script type="text/javascript" src="./js/classes/player.js"></script>
+    <script type="text/javascript" src="./js/classes/playerBullet.js"></script>
+    <script type="text/javascript" src="./js/classes/life.js"></script>
+    <script type="text/javascript" src="./js/classes/ui.js"></script>
+    <script type="text/javascript" src="./js/classes/textInput.js"></script>
+    <script type="text/javascript" src="./js/classes/levelUi.js"></script>
+    <script type="text/javascript" src="./js/classes/gameOverUI.js"></script>
+    <script type="text/javascript" src="./js/classes/titleUi.js"></script>
+    <script type="text/javascript" src="./js/scenes/titleScene.js"></script>
+    <script type="text/javascript" src="./js/scenes/gameScene.js"></script>
+    <script type="text/javascript" src="./js/globals.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </head>
+  <body style="margin: 0px;">
+    <div style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;">.</div>
+    <div id="wrapperContainer">
+      <div id="wrapper" style="width: 1128px; height: 615px"></div>
+    </div>
+  </body>
+</html>
