@@ -8,6 +8,7 @@ class Snake extends Enemy {
     this.healthMax = 2000;
     this.score = 400;
     this.scale = 1.2;
+    this.type = "snake"
     
     this.pallet =  [0xFF8C00, 0xFFA500, 0xFF7F00];
 

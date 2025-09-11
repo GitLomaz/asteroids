@@ -12,6 +12,7 @@ class Monster extends Enemy {
     this.pallet = [0x00ff00, 0x00cc00, 0x009900];
     this.health = 120;
     this.score = 200
+    this.type = "monster"
 
     const angle = Phaser.Math.FloatBetween(0, Math.PI * 2);
     const speed = Phaser.Math.FloatBetween(0.1, 1);

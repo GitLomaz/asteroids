@@ -18,6 +18,7 @@ class Asteroid extends Enemy {
     this.score = score;
     this.size = size;
     this.pallet = [0xffffff, 0xcccccc, 0x999999];
+    this.type = "asteroid"
 
     this.points = this.generateJaggedPolygon(radius, 10, 0.3);
     this.graphics = new Phaser.GameObjects.Graphics(scene);
@@ -45,7 +46,14 @@ class Asteroid extends Enemy {
 
     // Random velocity and spin
     const angle = Phaser.Math.FloatBetween(0, Math.PI * 2);
-    const speed = Phaser.Math.FloatBetween(0.1, 1) * (size + 1) / 2;
+
+    const baseSpeed = Phaser.Math.FloatBetween(0.5, 1.5);
+    // Smaller asteroids = faster, bigger ones = slower
+    const sizeFactor = 1 / (size + 1);
+    // Higher level = faster asteroids overall
+    const levelFactor = 1 + scene.level * 0.1; // tweak growth rate
+    const speed = baseSpeed * sizeFactor * levelFactor;
+
     Phaser.Physics.Matter.Matter.Body.setVelocity(this.body, {
       x: Math.cos(angle) * speed,
       y: Math.sin(angle) * speed

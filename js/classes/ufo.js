@@ -17,8 +17,9 @@ class UFO extends Enemy {
     scene.add.existing(this);
 
     this.health = 80;
-    this.score = 150;
+    this.score = 3000;
     this.pallet = [0x00ffff, 0x66ffff, 0x003366];
+    this.type = "ufo"
 
     const dx = endCorner.x - startCorner.x;
     const dy = endCorner.y - startCorner.y;

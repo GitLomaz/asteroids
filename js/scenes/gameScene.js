@@ -94,8 +94,12 @@ let gameScene = new Phaser.Class({
           enemyBody = enemySprite.body
 
           const rawDamage = Math.floor(collision.depth * 4);
+          let damageMod = 1;
+          if (["ufo", "snake"].includes(enemySprite.type)) {
+            damageMod = 4.5;
+          }
           const clampedDamage = Phaser.Math.Clamp(rawDamage, 8, 45);
-          playerSprite.takeDamage(clampedDamage);
+          playerSprite.takeDamage(clampedDamage * damageMod);
           enemySprite.takeDamage(Math.floor(clampedDamage * 2))
 
           const contactPoint = collision.supports[0];
@@ -190,24 +194,30 @@ let gameScene = new Phaser.Class({
     new LevelUI();
   },
 
-  loadLevel() {
-    scene.timeBonus = 10000;
-    const currentLevel = LEVELS.levels[this.level - 1];
-    currentLevel.enemies.forEach(enemy => {
-      for (let i = 0; i < enemy.count; i++) {
-        const loc = generateEdgeLocation();
-        if (enemy.type === 'asteroid') {
-          new Asteroid(loc.x, loc.y, enemy.size );
-        } else if (enemy.type === 'monster') {
-          new Monster(loc.x, loc.y);
-        } else if (enemy.type === 'snake') {
-          new Snake(loc.x, loc.y);
-        } else if (enemy.type === 'mine') {
-          new Mine(loc.x, loc.y);
-        }
+loadLevel() {
+  scene.timeBonus = 10000;
+  let currentLevel;
+  if (this.level <= LEVELS.levels.length) {
+    currentLevel = LEVELS.levels[this.level - 1];
+  } else {
+    currentLevel = generateLevel(this.level);
+  }
+  currentLevel.enemies.forEach(enemy => {
+    for (let i = 0; i < enemy.count; i++) {
+      const loc = generateEdgeLocation();
+      if (enemy.type === 'asteroid') {
+        new Asteroid(loc.x, loc.y, enemy.size);
+      } else if (enemy.type === 'monster') {
+        new Monster(loc.x, loc.y);
+      } else if (enemy.type === 'snake') {
+        new Snake(loc.x, loc.y);
+      } else if (enemy.type === 'mine') {
+        new Mine(loc.x, loc.y);
       }
-    });
-  },
+    }
+  });
+},
+
 
   emitDebris(x, y, options = {}) {
     const defaults = {
