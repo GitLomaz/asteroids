@@ -1,52 +1,4 @@
 class Player extends Entity {
-  static WEAPON_TYPE = [
-    {
-      cooldown: 500,
-      guns: [
-        {
-          offset: {x: 0, y: 0},
-          angle: 0,
-          damage: 15
-        }
-      ]
-    },
-    {
-      cooldown: 400,
-      guns: [
-        {
-          offset: {x: 0, y: 0},
-          angle: 0,
-          damage: 15
-        }
-      ]
-    },
-    {
-      cooldown: 300,
-      guns: [
-        {
-          offset: {x: 0, y: 0},
-          angle: 0,
-          damage: 15
-        }
-      ]
-    },
-    {
-      cooldown: 500,
-      guns: [
-        {
-          offset: {x: -4, y: 4},
-          angle: 0,
-          damage: 15
-        },
-        {
-          offset: {x: 4, y: 4},
-          angle: 0,
-          damage: 15
-        },
-      ]
-    }
-  ]
-
   constructor(x = 400, y = 500) {
     super(x, y);
     scene.add.existing(this);
@@ -55,7 +7,7 @@ class Player extends Entity {
     this.inputFrozen = false
     this.invincible = false
     this.gunLevel = 0
-    this.currentGun = Player.WEAPON_TYPE[this.gunLevel]
+    this.currentGun = WEAPON_TYPE[this.gunLevel]
 
     const shipGraphics = scene.add.graphics();
     shipGraphics.lineStyle(3, 0xffff00);
@@ -371,9 +323,9 @@ class Player extends Entity {
   }
 
   increaseGunLevel() {
-    if (Player.WEAPON_TYPE[this.gunLevel + 1]) {
+    if (WEAPON_TYPE[this.gunLevel + 1]) {
       this.gunLevel++
-      this.currentGun = Player.WEAPON_TYPE[this.gunLevel]
+      this.currentGun = WEAPON_TYPE[this.gunLevel]
     }
   }
 
