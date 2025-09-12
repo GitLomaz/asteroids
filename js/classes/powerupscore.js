@@ -39,5 +39,17 @@ class PowerUpScore extends Entity {
     });
 
     this.setPosition(x, y);
+    scene.time.delayedCall(30000, () => {
+      if (this && this.body) {
+        scene.tweens.add({
+          targets: this,
+          alpha: 0,
+          duration: 1000,
+          onComplete: () => {
+            this.destroy();
+          }
+        });
+      }
+    });
   }
 }
