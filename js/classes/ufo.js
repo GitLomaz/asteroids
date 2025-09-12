@@ -175,6 +175,9 @@ class UFO extends Enemy {
     if (this.body) {
       this.setPosition(this.body.position.x, this.body.position.y);
       Phaser.Physics.Matter.Matter.Body.setVelocity(this.body, this.prevState.velocity);
+      if (this.body.position.x < -50 || this.body.position.x > scene.game.config.width + 50) {
+        this.destroy();
+      }
     }
   }
 }
