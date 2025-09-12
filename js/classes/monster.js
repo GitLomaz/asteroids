@@ -10,7 +10,7 @@ class Monster extends Enemy {
     this.frame = 0;
     this.counter = 0;
     this.pallet = [0x00ff00, 0x00cc00, 0x009900];
-    this.health = 120;
+    this.health = 120 * (1 + scene.level / 10);
     this.score = 200
     this.type = "monster"
 

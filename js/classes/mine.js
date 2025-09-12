@@ -6,7 +6,7 @@ class Mine extends Enemy {
     this.frame = 0;
     this.counter = 0;
     this.pallet = [0xFF0000, 0xcc0000, 0x990000];
-    this.health = 20;
+    this.health = 20 * (1 + scene.level / 10);
     this.score = 200
 
     const angle = Phaser.Math.FloatBetween(0, Math.PI * 2);

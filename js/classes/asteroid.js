@@ -7,7 +7,7 @@ class Asteroid extends Enemy {
 
     // Growth curves
     const radius = BASE_RADIUS * (1 + size);          // grows linearly with size
-    const health = BASE_HEALTH * Math.pow(size + 1, 1.2); // grows a bit faster than linear
+    const health = BASE_HEALTH * Math.pow(size + 1, 1.2) * (1 + scene.level / 10); // grows a bit faster than linear
     const score = Math.max(25, Math.floor(BASE_SCORE / (size + 1))); // smaller = higher score, clamp at 25
 
     super(x, y);

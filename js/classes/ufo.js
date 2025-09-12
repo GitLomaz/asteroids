@@ -16,7 +16,7 @@ class UFO extends Enemy {
     super(startCorner.x, startCorner.y);
     scene.add.existing(this);
 
-    this.health = 80;
+    this.health = 80 * (1 + scene.level / 10);
     this.score = 3000;
     this.pallet = [0x00ffff, 0x66ffff, 0x003366];
     this.type = "ufo"

@@ -4,8 +4,8 @@ class Snake extends Enemy {
     scene.add.existing(this);
     this.bodyParts = [];
     this.spawnCooldown = 20;
-    this.health = 500;
-    this.healthMax = 2000;
+    this.health = 500 * (1 + scene.level / 10);
+    this.healthMax = 2000 * (1 + scene.level / 10);
     this.score = 400;
     this.scale = 1.2;
     this.type = "snake"
