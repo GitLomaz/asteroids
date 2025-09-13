@@ -1,6 +1,6 @@
 const LEVELS = {
   "levels": [
-    { "level": 1, "enemies": [ { "type": "asteroid", "size": 2, "count": 5 } ] },
+    { "level": 1, "enemies": [ { "type": "asteroid", "size": 1, "count": 5 } ] },
     { "level": 2, "enemies": [ { "type": "asteroid", "size": 3, "count": 3 }, { "type": "snake", "count": 1 } ] },
     { "level": 3, "enemies": [ { "type": "asteroid", "size": 4, "count": 2 }, { "type": "monster", "count": 2 } ] },
     { "level": 4, "enemies": [ { "type": "asteroid", "size": 3, "count": 4 }, { "type": "mine", "count": 1 }, { "type": "snake", "count": 1 } ] },
