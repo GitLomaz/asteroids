@@ -49,6 +49,31 @@ class Player extends Entity {
       tint: [0xffff00]
     });
 
+    // Side thrusters for turning
+    this.leftThruster = this.thrustParticles.createEmitter({
+      x: x, y: y,
+      speed: { min: 30, max: 60 },
+      lifespan: { min: 300, max: 600 },
+      quantity: 1,
+      scale: { start: 0.4, end: 0 },
+      alpha: { start: 1, end: 0 },
+      blendMode: 'ADD',
+      tint: [0xffff00],
+      on: false
+    });
+
+    this.rightThruster = this.thrustParticles.createEmitter({
+      x: x, y: y,
+      speed: { min: 30, max: 60 },
+      lifespan: { min: 300, max: 600 },
+      quantity: 1,
+      scale: { start: 0.4, end: 0 },
+      alpha: { start: 1, end: 0 },
+      blendMode: 'ADD',
+      tint: [0xffff00],
+      on: false
+    });
+    
     // Smaller render texture size
     const size = 28;
     const rt = scene.add.renderTexture(0, 0, size, size);
@@ -166,6 +191,73 @@ class Player extends Entity {
     if (this.keys.space.isDown && time > this.lastFired + this.currentGun.cooldown) {
       this.fire();
       this.lastFired = time;
+    }
+
+    // Positioning offsets
+    const angle = body.angle - Math.PI / 2;
+
+    // Forward thruster is already handled above
+
+    if (this.wasd.left.isDown || this.cursors.left.isDown) {
+      // Move thruster toward front-right of ship
+      const forwardOffset = 10;  // how far toward the nose
+      const sideOffset = 4;     // how far out to the side
+
+      const fx = body.position.x + Math.cos(angle) * forwardOffset;
+      const fy = body.position.y + Math.sin(angle) * forwardOffset;
+
+      const rightX = fx + Math.cos(angle + Math.PI / 2) * sideOffset;
+      const rightY = fy + Math.sin(angle + Math.PI / 2) * sideOffset;
+
+      this.leftThruster.setPosition(rightX, rightY);
+      this.leftThruster.setAngle({
+        min: Phaser.Math.RadToDeg(angle + Math.PI) + 240,
+        max: Phaser.Math.RadToDeg(angle + Math.PI) + 210
+      });
+      this.leftThruster.on = true;
+    } else if (this.wasd.right.isDown || this.cursors.right.isDown) {
+      // Move thruster toward front-left of ship
+      const forwardOffset = 10;
+      const sideOffset = 4;
+
+      const fx = body.position.x + Math.cos(angle) * forwardOffset;
+      const fy = body.position.y + Math.sin(angle) * forwardOffset;
+
+      const leftX = fx + Math.cos(angle - Math.PI / 2) * sideOffset;
+      const leftY = fy + Math.sin(angle - Math.PI / 2) * sideOffset;
+
+      this.rightThruster.setPosition(leftX, leftY);
+      this.rightThruster.setAngle({
+        min: Phaser.Math.RadToDeg(angle + Math.PI) - 240,
+        max: Phaser.Math.RadToDeg(angle + Math.PI) - 210
+      });
+      this.rightThruster.on = true;
+    } else if (this.wasd.down.isDown || this.cursors.down.isDown) {
+      const forwardOffset = 10;
+      const sideOffset = 4;
+      const fx = body.position.x + Math.cos(angle) * forwardOffset;
+      const fy = body.position.y + Math.sin(angle) * forwardOffset;
+
+      const leftX = fx + Math.cos(angle - Math.PI / 2) * sideOffset;
+      const leftY = fy + Math.sin(angle - Math.PI / 2) * sideOffset;
+      const rightX = fx + Math.cos(angle + Math.PI / 2) * sideOffset;
+      const rightY = fy + Math.sin(angle + Math.PI / 2) * sideOffset;
+
+      this.rightThruster.setPosition(leftX, leftY);
+      this.rightThruster.setAngle({
+        min: Phaser.Math.RadToDeg(angle + Math.PI) - 240,
+        max: Phaser.Math.RadToDeg(angle + Math.PI) - 210
+      });
+      this.leftThruster.setPosition(rightX, rightY);
+      this.leftThruster.setAngle({
+        min: Phaser.Math.RadToDeg(angle + Math.PI) + 240,
+        max: Phaser.Math.RadToDeg(angle + Math.PI) + 210
+      });
+      this.rightThruster.on = true;
+      this.leftThruster.on = true;
+    } else {
+      this.rightThruster.on = false;
+      this.leftThruster.on = false;
     }
   }
   
