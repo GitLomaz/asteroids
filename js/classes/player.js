@@ -52,8 +52,8 @@ class Player extends Entity {
     // Side thrusters for turning
     this.leftThruster = this.thrustParticles.createEmitter({
       x: x, y: y,
-      speed: { min: 30, max: 60 },
-      lifespan: { min: 300, max: 600 },
+      speed: { min: 20, max: 40 },
+      lifespan: { min: 200, max: 400 },
       quantity: 1,
       scale: { start: 0.4, end: 0 },
       alpha: { start: 1, end: 0 },
@@ -64,8 +64,8 @@ class Player extends Entity {
 
     this.rightThruster = this.thrustParticles.createEmitter({
       x: x, y: y,
-      speed: { min: 30, max: 60 },
-      lifespan: { min: 300, max: 600 },
+      speed: { min: 20, max: 40 },
+      lifespan: { min: 200, max: 400 },
       quantity: 1,
       scale: { start: 0.4, end: 0 },
       alpha: { start: 1, end: 0 },
