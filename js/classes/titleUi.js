@@ -153,7 +153,7 @@ class TitleUI extends Phaser.GameObjects.Container {
     };
 
     if (submission) {
-      fetch("https://us-dev.nightscapes.io/scores/submitScores.php", {
+      fetch("https://scores.lomazgames.com/scores", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ data: submission }).toString()
@@ -163,7 +163,7 @@ class TitleUI extends Phaser.GameObjects.Container {
         .catch((err) => console.error("Error submitting scores:", err));
 
     } else {
-      fetch("https://us-dev.nightscapes.io/scores/submitScores.php?game=asteroids")
+      fetch("https://scores.lomazgames.com/scores?game=asteroids")
         .then((res) => res.json())
         .then(handleResponse)
         .catch((err) => console.error("Error fetching scores:", err));
