@@ -47,6 +47,12 @@
     <script type="text/javascript" src="./js/globals.js"></script>
     <script type="text/javascript" src="./js/common.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="https://lomazgames.com/gameAPIClient.js"></script>
+    <script>
+      const api = new LomazGamesAPI();
+      await api.verify('game-123-secret', 123);
+      await api.submitAchievement(456);
+    </script>
   </head>
   <body style="margin: 0px;">
     <div style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;">.</div>
